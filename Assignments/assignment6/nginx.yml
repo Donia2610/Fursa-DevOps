@@ -1,0 +1,8 @@
+- hosts: all
+  become: yes
+  tasks:
+    - name: start nginx container
+      community.docker.docker_container:
+         name: nginx-proxy
+         image: nginx:1.13
+         state: started

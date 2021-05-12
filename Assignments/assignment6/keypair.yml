@@ -1,0 +1,7 @@
+- hosts: localhost
+  connection: local
+  tasks:
+       - name: create a new ec2 key pair, returns generated private key
+         amazon.aws.ec2_key:
+             name: my_keypair
+             region: us-east-1

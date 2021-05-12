@@ -1,0 +1,22 @@
+- hosts: localhost
+  connection: local
+  tasks:
+    - name: start an instance with a public IP address
+      community.aws.ec2_instance:
+        name: "paris"
+        key_name: "donia-keys"
+        region: us-east-1
+        vpc_subnet_id: subnet-01585b4c
+        instance_type: t2.micro
+        security_group: default
+        user_data: |
+                #!/bin/bash
+                sudo apt update -y
+                sudo apt install docker.io -y
+                sudo apt-get -y install python3-pip
+                sudo pip3 install docker-py
+        network:
+          assign_public_ip: true
+        image_id: ami-09e67e426f25ce0d7
+        tags:
+          Environment: Playground
